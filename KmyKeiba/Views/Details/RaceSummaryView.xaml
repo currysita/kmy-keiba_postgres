@@ -1,0 +1,249 @@
+﻿<UserControl x:Class="KmyKeiba.Views.Details.RaceSummaryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:skia="clr-namespace:SkiaSharp.Views.WPF;assembly=SkiaSharp.Views.WPF"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:b="clr-namespace:KmyKeiba.Behaviors"
+             xmlns:uc="clr-namespace:KmyKeiba.Views.Details"
+             xmlns:up="clr-namespace:KmyKeiba.Views.Parts"
+             xmlns:local="clr-namespace:KmyKeiba.Views.Details"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Name="Root">
+  <ScrollViewer>
+    <Grid Margin="8,0,4,4">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="auto"/>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+
+      <!-- レースの正式な条件 -->
+      <TextBlock FontSize="20" Foreground="{StaticResource SubForeground}" Margin="0,0,0,36">
+        <Run Text="{Binding Race.Data.SubName,ElementName=Root,Mode=OneWay}"/><Run Text=" / "/><Run Text="{Binding Race.Subject.DisplaySubjectName,ElementName=Root,Mode=OneWay}"/>
+      </TextBlock>
+
+      <!-- コースの情報 -->
+      <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
+
+        <StackPanel>
+          <!-- イメージ（概略図） -->
+          <skia:SKElement VerticalAlignment="Top">
+            <i:Interaction.Behaviors>
+              <b:DisplayImageBehavior Image="{Binding Race.CourseSummaryImage,ElementName=Root}"/>
+            </i:Interaction.Behaviors>
+          </skia:SKElement>
+
+          <StackPanel Margin="0,24,0,16">
+            <Button Command="{Binding OpenNetKeibaRaceCommand}" Width="300" FontSize="20" Content="netkeibaで開く" Padding="4,8"/>
+
+            <Button Command="{Binding Race.RaceAnalyzer.Value.PlayPaddockForceCommand,ElementName=Root}"
+                    Margin="0,8,0,0" Width="300">
+              <Button.Visibility>
+                <MultiBinding Converter="{StaticResource MultiBooleanConv}">
+                  <Binding Path="Race.RaceAnalyzer.Value.Movie.IsPaddockForceError.Value" ElementName="Root" Converter="{StaticResource NegativeConv}"/>
+                  <Binding Path="Race.IsLoadCompleted.Value" ElementName="Root"/>
+                </MultiBinding>
+              </Button.Visibility>
+              <StackPanel>
+                <TextBlock FontSize="16" Text="パドック映像" HorizontalAlignment="Center"/>
+                <TextBlock FontSize="14" Foreground="{StaticResource SubForeground}" Margin="0,2,0,0"
+                           Text="取得できませんでした。後でもう一度お試しください" HorizontalAlignment="Center"
+                           Visibility="{Binding Race.RaceAnalyzer.Value.Movie.IsPaddockError.Value,ElementName=Root,Converter={StaticResource BooleanVisibilityConv}}"/>
+              </StackPanel>
+            </Button>
+          </StackPanel>
+        </StackPanel>
+        
+        <!-- コース詳細情報 -->
+        <StackPanel Orientation="Vertical" Width="490" Margin="26,0,0,0">
+          <TextBlock FontSize="16">
+            <Run Text="{Binding Race.Data.Course,ElementName=Root,Converter={StaticResource CourseNameConv}}"
+                 FontSize="36" FontWeight="Bold"/>
+            <Run Text="{Binding Race.Data.TrackOption,ElementName=Root,Converter={StaticResource TrackConv}}" FontSize="22"/>
+            <Run Text="{Binding Race.Data.CourseType,ElementName=Root}" FontSize="22"/>
+          </TextBlock>
+          <TextBlock FontSize="20">
+            <Run Text="{Binding Race.Data.TrackGround,ElementName=Root,Converter={StaticResource TrackConv}}"/>
+            <Run Text="{Binding Race.Data.Distance,ElementName=Root}"/>m
+            <Run Text="{Binding Race.Data.TrackCornerDirection,ElementName=Root,Converter={StaticResource TrackConv}}"/>
+          </TextBlock>
+          <ItemsControl ItemsSource="{Binding Race.CourseDetails,ElementName=Root}" Margin="0,8,0,0">
+            <ItemsControl.ItemsPanel>
+              <ItemsPanelTemplate>
+                <StackPanel/>
+              </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+              <DataTemplate>
+                <TextBlock FontSize="14" Foreground="{StaticResource SubForeground}">
+                  <Run Text="{Binding Option,Converter={StaticResource TrackConv}}"/><Run Text="{Binding Ground,Converter={StaticResource TrackConv}}"/>
+                  　一周: <Run Text="{Binding Length}"/>m
+                  　最後の直線: <Run Text="{Binding LastStraightLineLength}"/>m
+                </TextBlock>
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="auto"/>
+              <ColumnDefinition Width="38"/>
+              <ColumnDefinition Width="auto"/>
+              <ColumnDefinition Width="auto"/>
+              <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.Resources>
+              <ScaleTransform x:Key="WeatherIconTransform" ScaleX="0.06" ScaleY="0.06"/>
+            </Grid.Resources>
+            <TextBlock FontSize="20" Margin="0,12,24,0">
+              <Run Text="{Binding Race.Data.StartTime,ElementName=Root,StringFormat=yyyy年M月d日}" FontSize="16"/> <Run Text="{Binding Race.Data.StartTime.Hour,ElementName=Root,Mode=OneWay}" FontSize="28"/>時<Run Text="{Binding Race.Data.StartTime.Minute,ElementName=Root,Mode=OneWay,StringFormat=00}" FontSize="28"/>分
+            </TextBlock>
+            <up:RaceWeatherIcon Weather="{Binding Race.Weather.Value,ElementName=Root}" Grid.Column="1"
+                                LayoutTransform="{StaticResource WeatherIconTransform}"
+                                VerticalAlignment="Bottom"/>
+            <up:RaceCourseConditionIcon Width="28" Condition="{Binding Race.Condition.Value,ElementName=Root}"
+                                        Margin="8,0,0,0" Grid.Column="2" Height="32" VerticalAlignment="Bottom"/>
+            <TextBlock Text="{Binding Race.Condition.Value,ElementName=Root,Converter={StaticResource TrackConv},ConverterParameter=Long}"
+                       Visibility="{Binding Race.IsBanei,ElementName=Root,Converter={StaticResource NegativeVisibilityConv}}"
+                       FontSize="24" VerticalAlignment="Bottom" Margin="8,0,0,0" Grid.Column="3"/>
+            <TextBlock Visibility="{Binding Race.IsBanei,ElementName=Root,Converter={StaticResource BooleanVisibilityConv}}"
+                       FontSize="24" VerticalAlignment="Bottom" Margin="8,0,0,0" Grid.Column="3">
+              <Run Text="{Binding Race.Data.BaneiMoisture,ElementName=Root,Converter={StaticResource DigitMinusConv}}"/>%
+            </TextBlock>
+          </Grid>
+          <StackPanel Visibility="{Binding Race.CanChangeWeathers,ElementName=Root,Converter={StaticResource BooleanVisibilityConv}}">
+            <StackPanel.Resources>
+              <Style TargetType="RadioButton" BasedOn="{StaticResource ToggleButtonDefault}">
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Width" Value="60"/>
+                <Setter Property="Margin" Value="0,0,8,0"/>
+              </Style>
+            </StackPanel.Resources>
+            <TextBlock FontSize="24" Margin="0,36,0,0" Text="天気・馬場を変更" FontWeight="Bold"/>
+            <TextBlock FontSize="16" Margin="0,8,0,0" Text="天気データが届いておりません。実際の発表を確認して設定してください。" Style="{StaticResource SubTextBlock}"/>
+            <TextBlock FontSize="16" Margin="0,0,0,8" Text="データ受信次第、下記の設定は受信された情報に置き換えられます。" Style="{StaticResource SubTextBlock}"/>
+            <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
+              <RadioButton GroupName="{Binding UniqueId,ElementName=Root}" Command="{Binding SetWeatherCommand}" CommandParameter="1" IsChecked="{Binding Race.Weather.Value,ElementName=Root,Mode=OneWay,Converter={StaticResource EqualConv},ConverterParameter=Fine}" Content="晴れ"/>
+              <RadioButton GroupName="{Binding UniqueId,ElementName=Root}" Command="{Binding SetWeatherCommand}" CommandParameter="2" IsChecked="{Binding Race.Weather.Value,ElementName=Root,Mode=OneWay,Converter={StaticResource EqualConv},ConverterParameter=Cloudy}" Content="曇り"/>
+              <RadioButton GroupName="{Binding UniqueId,ElementName=Root}" Command="{Binding SetWeatherCommand}" CommandParameter="3" IsChecked="{Binding Race.Weather.Value,ElementName=Root,Mode=OneWay,Converter={StaticResource EqualConv},ConverterParameter=Rainy}" Content="雨"/>
+              <RadioButton GroupName="{Binding UniqueId,ElementName=Root}" Command="{Binding SetWeatherCommand}" CommandParameter="4" IsChecked="{Binding Race.Weather.Value,ElementName=Root,Mode=OneWay,Converter={StaticResource EqualConv},ConverterParameter=Drizzle}" Content="小雨"/>
+              <RadioButton GroupName="{Binding UniqueId,ElementName=Root}" Command="{Binding SetWeatherCommand}" CommandParameter="5" IsChecked="{Binding Race.Weather.Value,ElementName=Root,Mode=OneWay,Converter={StaticResource EqualConv},ConverterParameter=Snow}" Content="雪"/>
+              <RadioButton GroupName="{Binding UniqueId,ElementName=Root}" Command="{Binding SetWeatherCommand}" CommandParameter="6" IsChecked="{Binding Race.Weather.Value,ElementName=Root,Mode=OneWay,Converter={StaticResource EqualConv},ConverterParameter=LightSnow}" Content="小雪"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,16,0,0"
+                        Visibility="{Binding Race.IsBanei,ElementName=Root,Converter={StaticResource NegativeVisibilityConv}}">
+              <RadioButton GroupName="{Binding UniqueId2,ElementName=Root}" Command="{Binding SetConditionCommand}" CommandParameter="1" IsChecked="{Binding Race.Condition.Value,ElementName=Root,Mode=OneWay,Converter={StaticResource EqualConv},ConverterParameter=Standard}" Content="良"/>
+              <RadioButton GroupName="{Binding UniqueId2,ElementName=Root}" Command="{Binding SetConditionCommand}" CommandParameter="2" IsChecked="{Binding Race.Condition.Value,ElementName=Root,Mode=OneWay,Converter={StaticResource EqualConv},ConverterParameter=Good}" Content="稍重"/>
+              <RadioButton GroupName="{Binding UniqueId2,ElementName=Root}" Command="{Binding SetConditionCommand}" CommandParameter="3" IsChecked="{Binding Race.Condition.Value,ElementName=Root,Mode=OneWay,Converter={StaticResource EqualConv},ConverterParameter=Yielding}" Content="重"/>
+              <RadioButton GroupName="{Binding UniqueId2,ElementName=Root}" Command="{Binding SetConditionCommand}" CommandParameter="4" IsChecked="{Binding Race.Condition.Value,ElementName=Root,Mode=OneWay,Converter={StaticResource EqualConv},ConverterParameter=Soft}" Content="不良"/>
+            </StackPanel>
+          </StackPanel>
+
+          <!--レースの変更情報-->
+          <ItemsControl ItemsSource="{Binding Race.Changes,ElementName=Root}" Margin="0,20,0,0">
+            <ItemsControl.ItemTemplate>
+              <DataTemplate>
+                <StackPanel Orientation="Horizontal">
+                  <TextBlock Text="{Binding Converter={StaticResource RaceChangeTextConv}}" FontSize="16" Foreground="{StaticResource BaseForeground}"/>
+                </StackPanel>
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
+        </StackPanel>
+      </StackPanel>
+
+      <!--メモ-->
+      <StackPanel Grid.Row="3" Visibility="{Binding Race.IsLoadCompleted.Value,ElementName=Root,Converter={StaticResource BooleanVisibilityConv}}"
+                  Margin="0,40,0,0">
+        <TextBlock Text="レースのメモ" FontSize="20" Width="800" Margin="0,0,0,4"/>
+        <TextBox TextWrapping="Wrap" AcceptsReturn="True" Background="{StaticResource BaseBackground}" Foreground="{StaticResource BaseForeground}"
+                 FontSize="16" MinHeight="160" MaxHeight="160" Width="800" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                 Text="{Binding Race.RaceAnalyzer.Value.Memo.Value,ElementName=Root,Mode=TwoWay}">
+          <TextBox.IsReadOnly>
+            <MultiBinding Converter="{StaticResource MultiBooleanConv}" ConverterParameter="Or">
+              <Binding Path="Race.RaceAnalyzer.Value.CanSave.Value" ElementName="Root" Converter="{StaticResource NegativeConv}"/>
+              <Binding Path="Race.RaceAnalyzer.Value.IsMemoSaving.Value" ElementName="Root"/>
+            </MultiBinding>
+          </TextBox.IsReadOnly>
+        </TextBox>
+      </StackPanel>
+
+      <!--レース制限-->
+      <Grid Grid.Row="2" HorizontalAlignment="Center" Margin="0,24,0,0"
+            Visibility="{Binding Race.IsLoadCompleted.Value,ElementName=Root,Converter={StaticResource BooleanVisibilityConv}}">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="50"/>
+          <ColumnDefinition Width="50"/>
+          <ColumnDefinition Width="50"/>
+          <ColumnDefinition Width="auto"/>
+          <ColumnDefinition Width="auto"/>
+          <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="auto"/>
+          <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Path Data="{StaticResource IconHorseHead}" Fill="{StaticResource MaleForeground}"
+              Visibility="{Binding Race.Data.Sex,ElementName=Root,Converter={StaticResource TrackConv},ConverterParameter=Male}">
+          <Path.LayoutTransform>
+            <ScaleTransform ScaleX="0.1" ScaleY="0.1"/>
+          </Path.LayoutTransform>
+        </Path>
+        <Path Grid.Column="1" Data="{StaticResource IconHorseHead}" Fill="{StaticResource FemaleForeground}"
+              Visibility="{Binding Race.Data.Sex,ElementName=Root,Converter={StaticResource TrackConv},ConverterParameter=Female}">
+          <Path.LayoutTransform>
+            <ScaleTransform ScaleX="0.1" ScaleY="0.1"/>
+          </Path.LayoutTransform>
+        </Path>
+        <Path Grid.Column="2" Data="{StaticResource IconHorseHead}" Fill="{StaticResource CastratedForeground}"
+              Visibility="{Binding Race.Data.Sex,ElementName=Root,Converter={StaticResource TrackConv},ConverterParameter=Castrated}">
+          <Path.LayoutTransform>
+            <ScaleTransform ScaleX="0.1" ScaleY="0.1"/>
+          </Path.LayoutTransform>
+        </Path>
+        <StackPanel Grid.Column="3" Width="130">
+          <TextBlock Foreground="{StaticResource SubForeground}" FontSize="16" Text="重量" TextAlignment="Center"/>
+          <TextBlock FontSize="28" Text="{Binding Race.Data.RiderWeight,ElementName=Root,Converter={StaticResource TrackConv}}" TextAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Grid.Column="4" Width="180">
+          <TextBlock Foreground="{StaticResource SubForeground}" FontSize="16" Text="地域" TextAlignment="Left"/>
+          <TextBlock FontSize="22" Text="{Binding Race.Data.Area,ElementName=Root,Converter={StaticResource TrackConv}}" TextAlignment="Left"
+                     Margin="0,4,0,0"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="6" Margin="0,16,0,0">
+          <TextBlock Foreground="{StaticResource SubForeground}" FontSize="20" Text="賞金"/>
+          <ItemsControl Margin="8,0,0,0" ItemsSource="{Binding Race.RaceAnalyzer.Value.PrizeMoneys,ElementName=Root}">
+            <ItemsControl.ItemsPanel>
+              <ItemsPanelTemplate>
+                <StackPanel Orientation="Horizontal"/>
+              </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+              <DataTemplate>
+                <StackPanel Width="100">
+                  <TextBlock Background="{StaticResource GoodBackground}" FontWeight="Bold" TextAlignment="Center"
+                             Text="{Binding Place}" FontSize="16"/>
+                  <TextBlock Text="{Binding PrizeMoney,Converter={StaticResource MoneyLabelConv}}" TextAlignment="Center" FontSize="18" Margin="0,4,0,0"/>
+                </StackPanel>
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
+        </StackPanel>
+      </Grid>
+
+      <!--ローディング-->
+      <Border Grid.Row="2" Margin="0,56,0,0" Visibility="{Binding Race.IsLoadCompleted.Value,ElementName=Root,Converter={StaticResource NegativeVisibilityConv}}">
+        <TextBlock Text="詳細情報をロード中です。しばらくお待ちください..." FontSize="36" Foreground="{StaticResource SubForeground}"
+                   HorizontalAlignment="Center"/>
+      </Border>
+      <Border Grid.Row="2" Margin="0,56,0,0" Visibility="{Binding Race.IsLoadError.Value,ElementName=Root,Converter={StaticResource BooleanVisibilityConv}}">
+        <TextBlock Text="一部データの読み込みに失敗しました" FontSize="24" Foreground="{StaticResource ErrorForeground}"
+                   HorizontalAlignment="Center" />
+      </Border>
+    </Grid>
+  </ScrollViewer>
+</UserControl>

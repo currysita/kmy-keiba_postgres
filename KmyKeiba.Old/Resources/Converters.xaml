@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:c="clr-namespace:KmyKeiba.Converters">
+  <c:RaceClassBrushConverter x:Key="RaceClassBrushConverter"/>
+  <c:NegativeConverter x:Key="NegativeConverter"/>
+  <c:JVLinkErrorCodeMessageConverter x:Key="JVLinkErrorCodeMessageConverter"/>
+  <c:NegativeVisibilityConverter x:Key="NegativeVisibilityConverter"/>
+  <c:BooleanVisibilityConverter x:Key="BooleanVisibilityConverter"/>
+  <c:JVLinkErrorCodeVisibilityConverter x:Key="JVLinkErrorCodeVisibilityConverter"/>
+  <c:OneLetterOneLineConverter x:Key="OneLetterOneLineConverter"/>
+  <c:FrameNumberBrushConverter x:Key="FrameNumberBrushConverter"/>
+  <c:ListEmptyBooleanConverter x:Key="ListEmptyBooleanConverter"/>
+  <c:CourseNameConverter x:Key="CourseNameConverter"/>
+  <c:TrackConverter x:Key="TrackConverter"/>
+  <c:RunningStyleConverter x:Key="RunningStyleConverter"/>
+  <c:OrderNumberConverter x:Key="OrderNumberConverter"/>
+  <c:RangeNumberConverter x:Key="RangeNumberConverter"/>
+  <c:AbnormalityResultConverter x:Key="AbnormalityResultConverter"/>
+  <c:MarkHorseCommandConverter x:Key="MarkHorseCommandConverter"/>
+  <c:HorseMarkConverter x:Key="HorseMarkConverter"
+                        MarkDefault="{StaticResource MarkDefault}"
+                        MarkDoubleCircle="{StaticResource MarkDoubleCircle}"
+                        MarkCircle="{StaticResource MarkCircle}"
+                        MarkTriangle="{StaticResource MarkTriangle}"
+                        MarkFilledTriangle="{StaticResource MarkFilledTriangle}"
+                        MarkStar="{StaticResource MarkStar}"
+                        MarkDeleted="{StaticResource MarkDeleted}"/>
+  <c:BitmapConverter x:Key="BitmapConverter"/>
+  <c:MachineLearningRunningStyleLabelConverter x:Key="MachineLearningRunningStyleLabelConverter"/>
+
+  <c:MultiBooleanConverter x:Key="MultiBooleanConverter"/>
+</ResourceDictionary>

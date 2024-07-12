@@ -1,0 +1,56 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:cv="clr-namespace:KmyKeiba.Converters">
+  <cv:CourseNameConverter x:Key="CourseNameConv"/>
+  <cv:NegativeConverter x:Key="NegativeConv"/>
+  <cv:NegativeVisibilityConverter x:Key="NegativeVisibilityConv"/>
+  <cv:BooleanVisibilityConverter x:Key="BooleanVisibilityConv"/>
+  <cv:MultiBooleanConverter x:Key="MultiBooleanConv"/>
+  <cv:TrackConverter x:Key="TrackConv"/>
+  <cv:LabelConverter x:Key="LabelConv"/>
+  <cv:StringFormatConverter x:Key="StringFormatConv"/>
+  <cv:MoneyLabelConverter x:Key="MoneyLabelConv"/>
+  <cv:RunningStyleConverter x:Key="RunningStyleConv"/>
+  <cv:FrameNumberBrushConverter x:Key="FrameNumberBrushConv"/>
+  <cv:EnumsConverter x:Key="EnumsConv"/>
+  <cv:OrderBackgroundConverter x:Key="OrderBackgroundConv"/>
+  <cv:ValueComparationBackgroundConverter x:Key="ValueComparationBackgroundConv"/>
+  <cv:ValueComparationForegroundConverter x:Key="ValueComparationForegroundConv"/>
+  <cv:DigitMinusConverter x:Key="DigitMinusConv"/>
+  <cv:NonZeroVisibilityConverter x:Key="NonZeroVisibilityConv"/>
+  <cv:EqualConverter x:Key="EqualConv"/>
+  <cv:AbnormalResultOpacityConv x:Key="AbnormalResultOpacityConv"/>
+  <cv:ResultLengthConverter x:Key="ResultLengthConv"/>
+  <cv:HorseMarkConverter x:Key="HorseMarkConv"
+                         MarkDefault="{StaticResource MarkDefault}"
+                         MarkDoubleCircle="{StaticResource MarkDoubleCircle}"
+                         MarkCircle="{StaticResource MarkCircle}"
+                         MarkTriangle="{StaticResource MarkTriangle}"
+                         MarkFilledTriangle="{StaticResource MarkFilledTriangle}"
+                         MarkStar="{StaticResource MarkStar}"
+                         MarkCheck="{StaticResource MarkCheck}"
+                         MarkNote="{StaticResource MarkNote}"
+                         MarkDeleted="{StaticResource MarkDeleted}"/>
+  <cv:TicketTypeBackgroundConverter x:Key="TicketTypeBackgroundConv"/>
+  <cv:TicketSummaryConverter x:Key="TicketSummaryConv"/>
+  <cv:RaceListItemStatusBackgroundConverter x:Key="RaceListItemStatusBackgroundConv"/>
+  <cv:NonMinusVisibilityConverter x:Key="NonMinusVisibilityConv"/>
+  <cv:RaceChangeToTextConverter x:Key="RaceChangeTextConv"/>
+  <cv:HorseColorBrushConverter x:Key="HorseColorBrushConv"/>
+  <cv:NonNullVisibilityConverter x:Key="NonNullVisibilityConv"/>
+  <cv:MemoColorBrushConverter x:Key="MemoColorBrushConv"
+                              DefaultBrush="{StaticResource BaseForeground}"
+                              GoodBrush="{StaticResource GoodForeground}"
+                              BadBrush="{StaticResource BadForeground}"
+                              WarningBrush="{StaticResource WarningForeground}"
+                              NegativeBrush="{StaticResource NegativeForeground}"/>
+  <cv:StringEmptyVisibilityConv x:Key="StringEmptyVisibilityConv"/>
+  <cv:CellTextAlignmentConverter x:Key="CellTextAlignmentConv"/>
+
+  <cv:BooleanBrushConverter x:Key="BooleanForegroundSubOrBaseConv" TrueBrush="{StaticResource SubForeground}" FalseBrush="{StaticResource BaseForeground}"/>
+  <cv:BooleanBrushConverter x:Key="BooleanForegroundCustomizedCategoryConv" TrueBrush="{StaticResource GoodBackground}" FalseBrush="Transparent"/>
+  <cv:BooleanBrushConverter x:Key="BooleanForegroundCustomizedCategoryConv2" TrueBrush="{StaticResource GoodForeground}" FalseBrush="{StaticResource BaseForeground}"/>
+  <cv:BooleanBrushConverter x:Key="BooleanBackgroundIsMaleConv" TrueBrush="{StaticResource MaleBackground}" FalseBrush="{StaticResource FemaleBackground}"/>
+  <cv:BooleanBrushConverter x:Key="BooleanForegroundActiveConv" TrueBrush="{StaticResource GoodForeground}" FalseBrush="{StaticResource BaseForeground}"/>
+  <cv:BooleanBrushConverter x:Key="BooleanBackgroundCheckedBloodConv" TrueBrush="#4400ffff" FalseBrush="Transparent"/>
+</ResourceDictionary>

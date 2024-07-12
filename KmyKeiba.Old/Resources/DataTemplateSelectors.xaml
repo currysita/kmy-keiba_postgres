@@ -1,0 +1,104 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:c="clr-namespace:KmyKeiba.Resources.TemplateSelectors"
+                    xmlns:vc="clr-namespace:KmyKeiba.Views.Controls">
+  <DataTemplate x:Key="RaceListContentTemplate">
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="auto"/>
+        <ColumnDefinition Width="*"/>
+      </Grid.ColumnDefinitions>
+      <StackPanel>
+        <Calendar SelectedDate="{Binding DataContext.ShowDate.Value,Mode=TwoWay,RelativeSource={RelativeSource AncestorType={x:Type Window}}}"/>
+      </StackPanel>
+      <vc:BindableScrollViewer Grid.Column="1" ScrollY="{Binding VerticalScroll.Value,Mode=TwoWay}">
+        <Grid>
+          <ItemsControl Visibility="{Binding IsRaceLoadError.Value,Converter={StaticResource NegativeVisibilityConverter}}"
+                        ItemsSource="{Binding Races}" ItemTemplate="{StaticResource RaceInfoTemplate}"/>
+          <TextBlock Visibility="{Binding IsRaceLoadError.Value,Converter={StaticResource BooleanVisibilityConverter}}"
+                     Foreground="Red" FontSize="24" TextAlignment="Center"
+                     VerticalAlignment="Center" HorizontalAlignment="Center">
+            レースのロードでエラーが発生しました<LineBreak/>データベースの読み込みに失敗した可能性があります<LineBreak/>MySQLの設定を確認してください
+          </TextBlock>
+          <TextBlock FontSize="24" TextAlignment="Center"
+                     VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock.Visibility>
+              <MultiBinding Converter="{StaticResource MultiBooleanConverter}">
+                <Binding Path="IsRaceLoadError.Value" Converter="{StaticResource NegativeConverter}"/>
+                <Binding Path="IsRacesEmpty.Value"/>
+              </MultiBinding>
+            </TextBlock.Visibility>
+            レースはありません<LineBreak/>メニューからレースを読み込んでください
+          </TextBlock>
+        </Grid>
+      </vc:BindableScrollViewer>
+    </Grid>
+  </DataTemplate>
+  <DataTemplate x:Key="RaceDetailContentTemplate">
+    <ContentControl ContentTemplate="{StaticResource RaceDetailTemplate}"
+                      Content="{Binding}"/>
+  </DataTemplate>
+
+  <c:MainTabContentTemplateSelector x:Key="MainTabContentTemplateSelector"
+                                    RaceListTemplate="{StaticResource RaceListContentTemplate}"
+                                    RaceDetailTemplate="{StaticResource RaceDetailContentTemplate}"
+                                    RiderDetailTemplate="{StaticResource RiderDetailContentTemplate}"/>
+
+  <Style TargetType="Button" x:Key="TabCloseButtonStyle">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="BorderThickness" Value="0"/>
+    <Setter Property="FontSize" Value="20"/>
+    <Setter Property="Width" Value="32"/>
+    <Setter Property="Content" Value="×"/>
+    <Setter Property="Visibility" Value="{Binding CanClose,Converter={StaticResource BooleanVisibilityConverter}}"/>
+    <Setter Property="Command" Value="{Binding DataContext.CloseTabCommand,RelativeSource={RelativeSource AncestorType={x:Type Window}}}"/>
+    <Setter Property="CommandParameter" Value="{Binding}"/>
+  </Style>
+  <DataTemplate x:Key="TextOnlyTabTemplate">
+    <Grid Width="200" Height="32">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="auto"/>
+      </Grid.ColumnDefinitions>
+      <TextBlock Text="レース一覧" FontSize="20"
+                 TextAlignment="Center" VerticalAlignment="Center"/>
+      <Button Grid.Column="1" Style="{StaticResource TabCloseButtonStyle}"/>
+    </Grid>
+  </DataTemplate>
+  <DataTemplate x:Key="RaceTabTemplate">
+    <Grid Width="200" Height="32">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="auto"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="auto"/>
+      </Grid.ColumnDefinitions>
+      <Label Grid.Column="0" Width="40"
+             Content="{Binding Race.Value.Subject.Value.ClassName}" FontSize="14" FontWeight="Bold"
+             Foreground="White"
+             Background="{Binding Race.Value.Subject.Value.DisplayClass,Converter={StaticResource RaceClassBrushConverter}}"
+             HorizontalContentAlignment="Center"
+             VerticalContentAlignment="Center"/>
+      <TextBlock Grid.Column="1" Text="{Binding Race.Value.DisplayName.Value}" FontSize="16"
+                 VerticalAlignment="Center"/>
+      <Button Grid.Column="2" Style="{StaticResource TabCloseButtonStyle}"/>
+    </Grid>
+  </DataTemplate>
+  <DataTemplate x:Key="RiderTabTemplate">
+    <Grid Width="200" Height="32">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="auto"/>
+      </Grid.ColumnDefinitions>
+      <TextBlock FontSize="20"
+                 TextAlignment="Center" VerticalAlignment="Center">
+        騎手: <Run Text="{Binding Rider.Value.Data.DisplayName,Mode=OneTime}"/>
+      </TextBlock>
+      <Button Grid.Column="1" Style="{StaticResource TabCloseButtonStyle}"/>
+    </Grid>
+  </DataTemplate>
+
+  <c:MainTabItemTemplateSelector x:Key="MainTabItemTemplateSelector"
+                                 RaceListTemplate="{StaticResource TextOnlyTabTemplate}"
+                                 RaceDetailTemplate="{StaticResource RaceTabTemplate}"
+                                 RiderDetailTemplate="{StaticResource RiderTabTemplate}"/>
+</ResourceDictionary>

@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\Details\RaceCornerView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Details\RaceExpectAllView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Details\RaceExpectHorseView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Details\RaceResultAllView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Details\RaceSummaryView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Details\RaceView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Dialogs\AppSettingDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Dialogs\DownloadDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Dialogs\ErrorConfigringDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Dialogs\ErrorSavingMemoDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Dialogs\ExecuteScriptBulkDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Dialogs\RTDownloadDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Dialogs\VersionDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Expansions\AnalysisTableAggregateView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Expansions\AnalysisTableCellDetail.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Expansions\ExpansionMemoHorseTeamSectionView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Expansions\ExpansionMemoLabelConfigView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Settings\AnalysisTableConfigView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Settings\AnalysisTableDelimiterConfigView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Settings\AnalysisTableScriptConfigView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Settings\AnalysisTableWeightConfigView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Expansions\ExpansionAnalysisTableView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Expansions\ExpansionMemoView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Settings\ExternalNumberConfigView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Settings\FinderColumnConfigView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Settings\FinderConfigView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ListItems\RaceHorsePillar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Main\RaceListView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Main\RaceWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Main\WindowMenu.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Parts\ExpansionMemoItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Parts\FinderKeyInputView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Parts\FinderQueryParameterView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Parts\FinderQuery\FinderQueryView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Parts\FinderQuery\InputBloodView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Parts\FinderQuery\InputListBoxView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Parts\FinderQuery\InputNumberView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Parts\FinderQuery\InputStringView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Parts\FinderRowListView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Parts\HorseBloodParentPanel.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Parts\HorseMarkButton.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Parts\MyProgressBar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Parts\RaceCourseTimeline.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Parts\RaceCourseTimelineItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Parts\RaceHorsePopup.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Parts\RacePopup.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Parts\RaceResultOrderGradeRow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Parts\RunningStyleTip.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Settings\GeneralConfigView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\ComboBoxStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\ControlStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\Converters.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\FinderCellTemplates.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\HorseMarks.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\ListBoxStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\ThemeDark.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Details\RaceCornerView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Details\RaceExpectAllView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Details\RaceExpectHorseView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Details\RaceResultAllView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Details\RaceSummaryView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Details\RaceView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Dialogs\AppSettingDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Dialogs\DownloadDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Dialogs\ErrorConfigringDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Dialogs\ErrorSavingMemoDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Dialogs\ExecuteScriptBulkDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Dialogs\RTDownloadDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Dialogs\VersionDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Expansions\AnalysisTableAggregateView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Expansions\AnalysisTableCellDetail.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Expansions\ExpansionMemoHorseTeamSectionView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Expansions\ExpansionMemoLabelConfigView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Settings\AnalysisTableConfigView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Settings\AnalysisTableDelimiterConfigView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Settings\AnalysisTableScriptConfigView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Settings\AnalysisTableWeightConfigView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Expansions\ExpansionAnalysisTableView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Expansions\ExpansionMemoView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Settings\ExternalNumberConfigView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Settings\FinderColumnConfigView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Settings\FinderConfigView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ListItems\RaceHorsePillar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Main\RaceListView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Main\RaceWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Main\WindowMenu.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Parts\ExpansionMemoItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Parts\FinderKeyInputView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Parts\FinderQueryParameterView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Parts\FinderQuery\FinderQueryView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Parts\FinderQuery\InputBloodView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Parts\FinderQuery\InputListBoxView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Parts\FinderQuery\InputNumberView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Parts\FinderQuery\InputStringView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Parts\FinderRowListView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Parts\HorseBloodParentPanel.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Parts\HorseMarkButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Parts\MyProgressBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Parts\RaceCourseTimeline.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Parts\RaceCourseTimelineItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Parts\RaceHorsePopup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Parts\RacePopup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Parts\RaceResultOrderGradeRow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Parts\RunningStyleTip.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Settings\GeneralConfigView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>
